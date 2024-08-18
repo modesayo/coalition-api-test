@@ -89,7 +89,7 @@ const DiagnosticList: React.FC = () => {
         pagination={false}
         loading={loading}
         className="custom-table-header"
-        scroll={{ y: 300 }} // set a fixed height of 300px and enable scrolling
+        scroll={{ y:"300px" }} // set a fixed height of 300px and enable scrolling
         style={{ overflowY: "auto" }}
         
       />

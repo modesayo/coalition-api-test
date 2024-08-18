@@ -54,7 +54,7 @@ const LabResults: React.FC = () => {
               </List.Item>
             )}
             style={{ height: 300, overflow: 'auto' }}
-      scroll={{ y: true }}
+        
           />
         </div>
       )}
