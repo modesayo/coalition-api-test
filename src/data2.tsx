@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Card, Button } from "antd";
-
+import { PatientContext } from "./indexcontst";
 interface PatientData {
   id: number;
   name: string;
@@ -15,7 +15,7 @@ interface PatientData {
 
 const ProfileCard2: React.FC = () => {
   const [patientData, setPatientData] = useState<PatientData[] | null>(null);
-
+  const { selectedPatientIndex } = useContext(PatientContext);
   useEffect(() => {
     const username = "coalition";
     const password = "skills-test";
@@ -32,13 +32,13 @@ const ProfileCard2: React.FC = () => {
         setPatientData(data);
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [selectedPatientIndex]);
 
   if (!patientData) {
     return <div>Loading...</div>;
   }
 
-  const patient = patientData[0];
+  const patient = patientData[selectedPatientIndex];
 
   return (
     <div className="flex mx-[17px] h-screen bg-gray-100">

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useContext, useEffect, useState } from 'react';
+import { PatientContext }  from './indexcontst';
 interface Patient {
   name: string;
   gender: string;
@@ -14,7 +14,7 @@ const Sidebar: React.FC = () => {
   const [showSearchBar, setShowSearchBar] = useState(false); // add this state to track search bar visibility
   const username = 'coalition'; // replace with your actual username
   const password = 'skills-test'; // replace with your actual password
-
+  const { handlePatientClick } = useContext(PatientContext);
   useEffect(() => {
     const fetchPatients = async () => {
       try {
@@ -102,7 +102,7 @@ const Sidebar: React.FC = () => {
       <div className="h-[950px] overflow-y-auto"> {/* Add a fixed height and overflow-y: auto */}
         <div id="patient-list">
           {filteredPatients.map((patient, index) => (
-            <div key={index} className="flex justify-between items-center py-2 border-none border-gray-300">
+            <div key={index}  onClick={() => handlePatientClick(index)} className="flex justify-between items-center py-2 border-none border-gray-300">
               <div className="flex items-center">
                 <img src={patient.profile_picture} alt={patient.name} className="w-12 h-12 rounded-full mr-4" />
                 <div className="flex flex-col">

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Table } from "antd";
-
+import { PatientContext } from "./indexcontst";
 interface Diagnosis {
   key: string;
   problem: string;
@@ -30,7 +30,7 @@ interface PatientData {
 const DiagnosticList: React.FC = () => {
   const [diagnoses, setDiagnoses] = useState<Diagnosis[]>([]);
   const [loading, setLoading] = useState(true);
-
+  const { selectedPatientIndex } = useContext(PatientContext);
   useEffect(() => {
     const username = "coalition";
     const password = "skills-test";
@@ -46,7 +46,7 @@ const DiagnosticList: React.FC = () => {
       .then((data: PatientData[]) => {
         // changed to PatientData[]
         if (data && data.length > 0) {
-          const diagnosticList = data[1].diagnostic_list;
+          const diagnosticList = data[selectedPatientIndex].diagnostic_list;
           const diagnosesData = diagnosticList.map((diagnosis, index) => ({
             key: `${index + 1}`,
             problem: diagnosis.name,
@@ -61,7 +61,7 @@ const DiagnosticList: React.FC = () => {
         console.error(error);
         setLoading(false);
       });
-  }, []);
+  }, [selectedPatientIndex]);
 
   const columns = [
     {
@@ -91,7 +91,7 @@ const DiagnosticList: React.FC = () => {
         className="custom-table-header"
         scroll={{ y: 300 }} // set a fixed height of 300px and enable scrolling
         style={{ overflowY: "auto" }}
-        scrollbar={{ hide: true, hover: true }}
+        
       />
     </div>
   );

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Card, List, Typography } from 'antd';
-
+import { PatientContext } from './indexcontst';
 interface PatientData {
   id: number;
   name: string;
@@ -22,7 +22,7 @@ interface PatientData {
 
 const LabResults: React.FC = () => {
   const [patientData, setPatientData] = useState<PatientData[] | null>(null);
-
+  const { selectedPatientIndex } = useContext(PatientContext);
   useEffect(() => {
     const username = "coalition";
     const password = "skills-test";
@@ -39,7 +39,7 @@ const LabResults: React.FC = () => {
         setPatientData(data);
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [selectedPatientIndex]);
 
   return (
     <Card className='mx-[17px] mt-[32px]' >
@@ -47,7 +47,7 @@ const LabResults: React.FC = () => {
         <div>
           <Typography.Title level={4}>Lab Results</Typography.Title>
           <List
-            dataSource={patientData[0].lab_results}
+            dataSource={patientData[selectedPatientIndex].lab_results}
             renderItem={(labResult) => (
               <List.Item>
                 <Typography.Text>{labResult}</Typography.Text>

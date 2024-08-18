@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
+import { PatientContext } from "./indexcontst";
 
 interface DiagnosisHistory {
   month: string;
@@ -62,6 +63,7 @@ const HealthCard: React.FC = () => {
       },
     ],
   });
+  const { selectedPatientIndex } = useContext(PatientContext); 
   const [options] = useState({
     plugins: {
       legend: {
@@ -97,6 +99,7 @@ const HealthCard: React.FC = () => {
   const [selectedRange, setSelectedRange] = useState("All");
 
   useEffect(() => {
+    if (selectedPatientIndex !== null) {
     const username = "coalition";
     const password = "skills-test";
     const auth = `Basic ${btoa(`${username}:${password}`)}`;
@@ -111,16 +114,16 @@ const HealthCard: React.FC = () => {
       .then((data) => {
         setPatientData(data);
       })
-      .catch((error) => console.error(error));
-  }, []);
+      .catch((error) => console.error(error));}
+  }, [selectedPatientIndex]);
 
   useEffect(() => {
     if (
       patientData &&
       patientData.length > 0 &&
-      patientData[0].diagnosis_history
+      patientData[selectedPatientIndex].diagnosis_history
     ) {
-      const diagnosisHistory = patientData[0].diagnosis_history;
+      const diagnosisHistory = patientData[selectedPatientIndex].diagnosis_history;
       const currentMonth = new Date().getMonth() + 1;
       const currentYear = new Date().getFullYear();
 
@@ -253,13 +256,13 @@ const HealthCard: React.FC = () => {
               </h2>
               <p className="text-4xl font-bold">
                 {
-                  patientData[0].diagnosis_history[0].blood_pressure.systolic
+                  patientData[selectedPatientIndex].diagnosis_history[0].blood_pressure.systolic
                     .value
                 }
               </p>
               <p className="text-sm text-gray-500">
                 {
-                  patientData[0].diagnosis_history[0].blood_pressure.systolic
+                  patientData[selectedPatientIndex].diagnosis_history[0].blood_pressure.systolic
                     .levels
                 }
               </p>
