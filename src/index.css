@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ant-menu-item, .ant-menu-item-selected, .ant-menu-item:hover {
+  border-bottom: none !important;
+}
+
+.ant-menu-item::after, .ant-menu-item-selected::after, .ant-menu-item:hover::after {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+body {
+  @apply bg-[#F6F7F8];
+}
+
+:where(.css-dev-only-do-not-override-d2lrxs).ant-table-wrapper .ant-table-thead > tr > th {
+  background-color: transparent !important;
+  background-image: none !important;
+  border-radius: 10px;
+}
+.custom-table-header .ant-table-body {
+  overflow-y: auto;
+}
+
+.custom-table-header .ant-table-body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-table-header .ant-table-body::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+.custom-table-header .ant-table-body::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.custom-table-header .ant-table-body:not(:hover)::-webkit-scrollbar {
+  display: none;
+}
