@@ -1,0 +1,14 @@
+.link {
+    text-decoration: none;
+  }
+  
+  .link:hover {
+    text-decoration: none;
+    border-bottom: none;
+    box-shadow: none;
+  }
+  a:hover {
+    text-decoration: none;
+    border-bottom: none;
+    box-shadow: none;
+  }
