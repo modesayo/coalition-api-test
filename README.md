@@ -1,6 +1,8 @@
 <<<<<<< HEAD
 # coalition-api-test
 this was my submission for the position of front end developers for coalition technologies
+https://xd.adobe.com/view/121254c9-532f-4772-a1ba-dfe529a96b39-4741/(how its meant to look like)
+https://documenter.getpostman.com/view/11861104/2sA35G42ve(this is where i got the data from)
 =======
 # React + TypeScript + Vite
 
