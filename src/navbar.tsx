@@ -14,6 +14,7 @@ interface LocationState {
   };
 }
 
+
 const Navbar: React.FC = () => {
     const location = useLocation<LocationState>();
 
@@ -309,14 +310,14 @@ const Navbar: React.FC = () => {
           />
         </svg>
       ),
-    },
+    }];
 
-     const navbarItems =
-  location.state?.from.pathname === '/'
-    ? homeNavbarItems
-    : location.state?.from.pathname === '/about'
-    ? aboutNavbarItems
-    : contactNavbarItems, // Add a comma here
+      const navbarItems =
+    location.state?.from.pathname === "/"
+      ? homeNavbarItems
+      : location.state?.from.pathname === "/about"
+      ? aboutNavbarItems
+      : contactNavbarItems;
 
 
  
