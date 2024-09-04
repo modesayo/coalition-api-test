@@ -452,6 +452,6 @@ const [selectedKey, setSelectedKey] = useState<string | undefined>();
 </div>
 </div>
 );
-};
+})};
 
 export default Navbar;
