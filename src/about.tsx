@@ -1,5 +1,5 @@
 // About.js
-import React from 'react';
+
 import Navbar from './navbar';
 import Sidebar from './sidecomp';
 const About = () => {
