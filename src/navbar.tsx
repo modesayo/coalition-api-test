@@ -306,7 +306,7 @@ const Navbar: React.FC = () => {
   ];
 
   const [navbarItems, setNavbarItems] = useState<NavbarItem[]>(homeNavbarItems);
-  const [selectedKeys, setSelectedKeys] = useState<string[]>(['']);
+const [selectedKey, setSelectedKey] = useState<string | undefined>();
   const [showMenu, setShowMenu] = useState(false);
   const handleMenuClose = () => {
     setShowMenu(false);
