@@ -5,6 +5,7 @@ interface Patient {
   gender: string;
   age: number;
   profile_picture: string;
+  id: number;
   // add this property to store the profile picture URL
 }
 
