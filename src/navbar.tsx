@@ -311,13 +311,15 @@ const Navbar: React.FC = () => {
       ),
     },
 
-
-  const navbarItems =
+     const navbarItems =
     location.state?.from.pathname === '/'
       ? homeNavbarItems
       : location.state?.from.pathname === '/about'
       ? aboutNavbarItems
       : contactNavbarItems;
+
+
+ 
 
  const [selectedKey, setSelectedKey] = useState<string>('')
   const [showMenu, setShowMenu] = useState(false);
@@ -466,6 +468,6 @@ onClick={() => {}}
 </div>
 </div>
 );
-},)};
+})};
 
 export default Navbar;
