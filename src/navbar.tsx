@@ -15,7 +15,7 @@ interface LocationState {
 }
 
 
-const Navbar: React.FC = () => {
+const Navbar = () => { 
     const location = useLocation<LocationState>();
 
 
