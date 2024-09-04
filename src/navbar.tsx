@@ -327,51 +327,46 @@ const [selectedKey, setSelectedKey] = useState<string | undefined>();
       setNavbarItems(contactNavbarItems);
     }
 
-    const selectedKey = navbarItems.find(
-      (item) => item.path === location.pathname
-    )?.label;
-    setSelectedKeys([selectedKey]);
-  }, [location.pathname, navbarItems]);
 
   return (
 <div className=" mt-4 w-auto h-[72px] z-10 ">
   <div className="container flex justify-between mx-auto rounded-full items-center w-[95%] bg-white flex-nowrap">
     <img src="TestLogo.png"  alt="Logo" className=" h-[44px] mx-4" />
-    <Menu
-      mode="horizontal"
-      theme="light"
-      selectedKeys={selectedKeys}
-      className="flex-1 justify-center items-center"
+
+      <Menu
+  mode="horizontal"
+  theme="light"
+  selectedKeys={[selectedKey]} // Note the array wrapping
+  className="flex-1 justify-center items-center"
+  style={{
+    background: "transparent",
+  }}
+>
+  {navbarItems.map((item) => (
+    <Menu.Item
+      key={item.label}
       style={{
-        background: "transparent",
+        backgroundColor: selectedKey === item.label ? "#01F0D0" : "",
+        color: "inherit",
+        textDecoration: "none",
+        borderRadius: "999px",
       }}
     >
-      {navbarItems.map((item) => (
-        <Menu.Item
-          key={item.label}
-          style={{
-            backgroundColor: selectedKeys.includes(item.label)
-              ? "#01F0D0"
-              : "",
-            color: "inherit",
-            textDecoration: "none",
-            borderRadius: "999px",
-          }}
-        >
-          <Link
-            to={item.path}
-            className="link no-underline hover:no-underline"
-          >
-            <div style={{ display: "flex", alignItems: "center" }}>
-              {item.icon}
-              <span style={{ display: "inline-block", marginLeft: 8 }}>
-                {item.label}
-              </span>
-            </div>
-          </Link>
-        </Menu.Item>
-      ))}
-    </Menu>
+      <Link
+        to={item.path}
+        className="link no-underline hover:no-underline"
+        onClick={() => setSelectedKey(item.label)}
+      >
+        <div style={{ display: "flex", alignItems: "center" }}>
+          {item.icon}
+          <span style={{ display: "inline-block", marginLeft: 8 }}>
+            {item.label}
+          </span>
+        </div>
+      </Link>
+    </Menu.Item>
+  ))}
+</Menu>
     <div className="flex items-center ">
   <div className="w-10 h-10 rounded-full overflow-hidden mr-4">
   <img src="https://via.placeholder.com/150" alt="Placeholder" className="w-full h-full object-cover" />
