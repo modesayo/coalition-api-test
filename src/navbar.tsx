@@ -345,6 +345,7 @@ const [selectedKey, setSelectedKey] = useState<string | undefined>();
   {navbarItems.map((item) => (
     <Menu.Item
       key={item.label}
+onClick={() => {}}
       style={{
         backgroundColor: selectedKey === item.label ? "#01F0D0" : "",
         color: "inherit",
