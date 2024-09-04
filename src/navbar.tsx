@@ -360,7 +360,7 @@ const Navbar: React.FC = () => {
   {navbarItems.map((item) => (
     <Menu.Item
       key={item.label}
-onClick={() => {}}
+       onClick={() => {}}
       style={{
         backgroundColor: selectedKey === item.label ? "#01F0D0" : "",
         color: "inherit",
