@@ -4,7 +4,8 @@ interface Patient {
   name: string;
   gender: string;
   age: number;
-  profile_picture: string; // add this property to store the profile picture URL
+  profile_picture: string;
+  1d: number;// add this property to store the profile picture URL
 }
 
 const Sidebar: React.FC = () => {
