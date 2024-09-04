@@ -8,15 +8,10 @@ interface NavbarItem {
   icon: JSX.Element;
 }
 
-interface LocationState {
-  from: {
-    pathname: string;
-  };
-}
 
 
 const Navbar = () => { 
-    const location = useLocation<LocationState>();
+    const location = useLocation();
 
 
   const homeNavbarItems: NavbarItem[] = [
