@@ -329,15 +329,27 @@ const Navbar = () => {
   const handleMenuClose1 = () => {
     setShowMenu1(false);
   };
-  useEffect(() => {
-    if (location.state?.from.pathname === '/') {
-      setSelectedKey('Overview');
-    } else if (location.state?.from.pathname === '/about') {
-      setSelectedKey('Patients');
-    } else if (location.state?.from.pathname === '/contact') {
-      setSelectedKey('Schedule');
-    }
-  }, [location.state?.from.pathname]);
+useEffect(() => {
+    const handleLocationChange = () => {
+      if (location.pathname === '/') {
+        setSelectedKey('Overview');
+      } else if (location.pathname === '/about') {
+        setSelectedKey('Patients');
+      } else if (location.pathname === '/contact') {
+        setSelectedKey('Schedule');
+      }
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+
+    // Call the handler once to set the initial selected key
+    handleLocationChange();
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+    };
+  }, [location]);
 
   return (
 <div className=" mt-4 w-auto h-[72px] z-10 ">
