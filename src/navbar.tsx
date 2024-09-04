@@ -8,8 +8,15 @@ interface NavbarItem {
   icon: JSX.Element;
 }
 
+interface LocationState {
+  from: {
+    pathname: string;
+  };
+}
+
 const Navbar: React.FC = () => {
-  const location = useLocation();
+    const location = useLocation<LocationState>();
+
 
   const homeNavbarItems: NavbarItem[] = [
     {
@@ -303,10 +310,16 @@ const Navbar: React.FC = () => {
         </svg>
       ),
     },
-  ];
 
-  const [navbarItems, setNavbarItems] = useState<NavbarItem[]>(homeNavbarItems);
-const [selectedKey, setSelectedKey] = useState<string | undefined>();
+
+  const navbarItems =
+    location.state?.from.pathname === '/'
+      ? homeNavbarItems
+      : location.state?.from.pathname === '/about'
+      ? aboutNavbarItems
+      : contactNavbarItems;
+
+ const [selectedKey, setSelectedKey] = useState<string>('')
   const [showMenu, setShowMenu] = useState(false);
   const handleMenuClose = () => {
     setShowMenu(false);
@@ -319,14 +332,14 @@ const [selectedKey, setSelectedKey] = useState<string | undefined>();
     setShowMenu1(false);
   };
   useEffect(() => {
-    if (location.pathname === "/") {
-      setNavbarItems(homeNavbarItems);
-    } else if (location.pathname === "/about") {
-      setNavbarItems(aboutNavbarItems);
-    } else if (location.pathname === "/contact") {
-      setNavbarItems(contactNavbarItems);
+    if (location.state?.from.pathname === '/') {
+      setSelectedKey('Overview');
+    } else if (location.state?.from.pathname === '/about') {
+      setSelectedKey('Patients');
+    } else if (location.state?.from.pathname === '/contact') {
+      setSelectedKey('Schedule');
     }
-
+  }, [location.state?.from.pathname]);
 
   return (
 <div className=" mt-4 w-auto h-[72px] z-10 ">
