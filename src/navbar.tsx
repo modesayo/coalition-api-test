@@ -312,11 +312,11 @@ const Navbar: React.FC = () => {
     },
 
      const navbarItems =
-    location.state?.from.pathname === '/'
-      ? homeNavbarItems
-      : location.state?.from.pathname === '/about'
-      ? aboutNavbarItems
-      : contactNavbarItems;
+  location.state?.from.pathname === '/'
+    ? homeNavbarItems
+    : location.state?.from.pathname === '/about'
+    ? aboutNavbarItems
+    : contactNavbarItems, // Add a comma here
 
 
  
